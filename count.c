@@ -50,11 +50,12 @@ void add(int key, char* data){
 		struct Node* tmp;
 		tmp=(struct Node*)malloc(sizeof(struct Node));
 		tmp->data=data;
-		printf("first data %s\n",tmp->data);
+//		printf("first data %s\n",tmp->data);
 		tmp->next=NULL;
 		hashTable[key]=tmp;
-		printf("hT %s key %d \n",hashTable[key]->data,key);
+//		printf("hT %s key %d \n",hashTable[key]->data,key);
 		counter++;
+
 	}else{
 		if(search(key,data)==0){
 
@@ -66,12 +67,14 @@ void add(int key, char* data){
 			struct Node* tmpNode;
 			tmpNode=(struct Node*)malloc(sizeof(struct Node));
 			tmpNode->data=data;
-			printf("second data %s\n",tmpNode->data);
+//			printf("second data %s\n",tmpNode->data);
 			tmpNode->next=NULL;
 			tmp->next=tmpNode;
 			counter++;
+
 		}
 	}	
+
 
 }
 
@@ -83,6 +86,7 @@ int main(int argc, char* argv[]){
 	int len=0;
 	char substr[255];
 	int key;
+	char* data;
 	for(i=0;i<1000;i++){
 		hashTable[i]=NULL;
 	}
@@ -101,30 +105,37 @@ int main(int argc, char* argv[]){
 		return 0;
 	}	
 	do{
-
+		data=(char*)malloc(sizeof(str));
+		strcpy(data,str);
 		memcpy(substr,&str[2],strlen(str));
 		substr[strlen(str)]='\0';
 
 		number = (int)strtol(substr, NULL, 16);
 
 		key=getKey(number);
-		printf("str %s\n",str);
-		add(key,str);
-		printf("hT1 %s",hashTable[key]->data);
+//		printf("str %s\n",str);
+		add(key,data);
+//		printf("hT1 %s",hashTable[key]->data);
+		//printf("%s\n",hashTable[751]->data);
 	}while(fgets(str,255,f)!=NULL);	
 	
-	for(i=0;i<1000;i++){
+//	for(i=0;i<1000;i++){
 	
-			struct Node* tmp1=hashTable[i];
-			while(tmp1!=NULL){
-				printf("data %s key %d\n",tmp1->data,i);
-				tmp1=tmp1->next;
-			}
+		//	struct Node* tmp1=hashTable[i];
+		//	while(tmp1!=NULL){
+		//		printf("data %s key %d\n",tmp1->data,i);
+		//		tmp1=tmp1->next;
+//if(hashTable[i]==NULL)		
+//printf("%d\n ",hashTable[i]);	
+//else
+//printf("%s\n",hashTable[i]->data);
 		
-	}
+
+//	}
 	
 	printf("%d\n",counter);
 	fclose(f);
+	free(data);
 	return 0;
 }
 
