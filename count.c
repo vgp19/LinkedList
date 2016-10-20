@@ -13,13 +13,7 @@ int counter=0;
 
 int getKey(int data){
 	int key=0;
-//	char *ptr;
-//	int *p;
-//	key=(int*)malloc(sizeof(int));
-//	key=strtoul(data,&ptr,10);
-//	printf("%d\n",key);
 	key=data%1000;
-//	p=&key;
 	
 	key=abs(key);
 	return key;
@@ -50,10 +44,8 @@ void add(int key, char* data){
 		struct Node* tmp;
 		tmp=(struct Node*)malloc(sizeof(struct Node));
 		tmp->data=data;
-//		printf("first data %s\n",tmp->data);
 		tmp->next=NULL;
 		hashTable[key]=tmp;
-//		printf("hT %s key %d \n",hashTable[key]->data,key);
 		counter++;
 
 	}else{
@@ -67,7 +59,6 @@ void add(int key, char* data){
 			struct Node* tmpNode;
 			tmpNode=(struct Node*)malloc(sizeof(struct Node));
 			tmpNode->data=data;
-//			printf("second data %s\n",tmpNode->data);
 			tmpNode->next=NULL;
 			tmp->next=tmpNode;
 			counter++;
@@ -113,25 +104,9 @@ int main(int argc, char* argv[]){
 		number = (int)strtol(substr, NULL, 16);
 
 		key=getKey(number);
-//		printf("str %s\n",str);
 		add(key,data);
-//		printf("hT1 %s",hashTable[key]->data);
-		//printf("%s\n",hashTable[751]->data);
 	}while(fgets(str,255,f)!=NULL);	
 	
-//	for(i=0;i<1000;i++){
-	
-		//	struct Node* tmp1=hashTable[i];
-		//	while(tmp1!=NULL){
-		//		printf("data %s key %d\n",tmp1->data,i);
-		//		tmp1=tmp1->next;
-//if(hashTable[i]==NULL)		
-//printf("%d\n ",hashTable[i]);	
-//else
-//printf("%s\n",hashTable[i]->data);
-		
-
-//	}
 	
 	printf("%d\n",counter);
 	fclose(f);
